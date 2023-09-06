@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>担当者</th>
+            <th>タイトル</th>
+            <th>メモ</th>
+        </tr>
+        <tr>
+            <td>{{todo.id}}</td>
+            <td>{{todo.assign}}</td>
+            <td>{{todo.title}}</td>
+            <td>{{todo.memo}}</td>
+        </tr>
+    </table>
+    <a href="{{url_for('index')}}">戻る</a>
+</body>
+</html>

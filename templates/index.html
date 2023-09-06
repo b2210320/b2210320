@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>単語</th>
+            <th>タイトル</th>
+            <th>詳細</th>
+            <th>更新</th>
+            <th>削除</th>
+        </tr>
+        {% for todo in todos %}
+            <tr>
+                <td>{{todo.id}}</td>
+                <td>{{todo.phrase}}</td>
+                <td>{{todo.title}}</td>
+                <td><a href="/detail/{{todo.id}}">詳細</a></td>
+                <td><a href="/update/{{todo.id}}">更新</a></td>
+                <td><a href="/delete/{{todo.id}}">削除</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="/create">Todoを追加する</a>
+
+</body>
+</html>

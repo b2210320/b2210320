@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <form action="/create" method="post">
+        <input type="text" name="assign" placeholder="担当者" required><br>
+        <input type="text" name="assign" placeholder="単語" required><br>
+        <input type="text" name="title" placeholder="Todoのタイトル" required><br>
+    
+        <input type="submit" value="原文要約"><br>
+        <textarea name="summary" placeholder="原文の要約文が表示されます。">{{title}}</textarea><br>
+        <input type="text" name="memo" placeholder="メモ" required><br>
+        <input type="submit" value="追加">
+    </form>   
+    <a href="{{url_for('index')}}">戻る</a>
+</body>
+</html>
