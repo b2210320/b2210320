@@ -50,7 +50,7 @@ def create():
         # データベースに登録
         db.session.add(todo)
         db.session.commit()
-        return redirect(url_for("create"),title=title)
+        return redirect(url_for("create"))
 
 # @app.route("/create2",methods=['GET','POST'])
 # def create2():
