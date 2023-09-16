@@ -14,9 +14,10 @@ db = SQLAlchemy()
 class Todo(db.Model):#db.Modelでモデルを作成
     id = db.Column(db.Integer, primary_key=True)
     phrase = db.Column(db.String,nullable=False)
-    assign = db.Column(db.String, nullable=False)
+    #assign = db.Column(db.String, nullable=False) 
     title = db.Column(db.String, nullable=False)
-    memo = db.Column(db.Text, nullable=False)
+    summary=db.Column(db.String, nullable=False)
+    #memo = db.Column(db.Text, nullable=False)
 # FlaskアプリにSQLAlchemyを拡張する
 db.init_app(app)#アプリとデータベースを適合
 #model.pyで定義した設計図はスキーマを作成するための設計図
@@ -25,24 +26,24 @@ with app.app_context():
 
 
 @app.route("/")
-def index():
+def index():#初期状態
     # データベース上の全てのデータを取得
     todos = Todo.query.all()
     return render_template("index.html", todos = todos)
 
 
-@app.route("/create",methods=['GET','POST'])
+@app.route("/create",methods=['GET','POST'])#更新後
 def create():
     if request.method == "GET":
         return render_template("create.html")
     if request.method == "POST":
         #モデルのインスタンス
         todo = Todo(
-            assign = request.form.get('assign'),
+            #assign = request.form.get('assign'),
             phrase = request.form.get('phrase'),
-            title = summary(request.form.get('title')),#要約文
+            title = request.form.get('title'),
+            summary = summary(request.form.get('title'))#要約文
             #request.form.get('title'),
-            memo = request.form.get('memo')
            
         )
         #title = summary(request.form.get('title')),#要約文
@@ -98,9 +99,11 @@ def update(id):
         # 更新するレコードを選択
         update_todo = Todo.query.get_or_404(id)
         # 送信した値に元データを更新
-        update_todo.assign = request.form.get("assign")
+        update_todo.phrase = request.form.get("phrase")
         update_todo.title = request.form.get("title")
-        update_todo.memo = request.form.get("memo")
+        #update_todo.memo = request.form.get("memo")
+        #update_todo.summary = request.form.get("summary")
+        update_todo.summary = summary(update_todo.title)
         # データベースに反映
         db.session.commit()
         return redirect(url_for("index"))

@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "layout.html" %}<!--すべてのページにcss-->
+{% block content %}
     <table border="1">
         <tr>
             <th>id</th>
             <th>単語</th>
-            <th>タイトル</th>
-            <th>詳細</th>
+            <th>原文</th>
+            <th>要約文</th>
             <th>更新</th>
             <th>削除</th>
         </tr>
@@ -20,13 +14,26 @@
                 <td>{{todo.id}}</td>
                 <td>{{todo.phrase}}</td>
                 <td>{{todo.title}}</td>
-                <td><a href="/detail/{{todo.id}}">詳細</a></td>
+                <td>{{todo.summary}}</td>
+                <!--<td><a href="/detail/{{todo.id}}">詳細</a></td>-->
                 <td><a href="/update/{{todo.id}}">更新</a></td>
                 <td><a href="/delete/{{todo.id}}">削除</a></td>
             </tr>
         {% endfor %}
-    </table>
-    <a href="/create">Todoを追加する</a>
 
-</body>
-</html>
+    </table>
+
+    <div class="button">
+    <label class="open" for="pop-up">Todoを追加する</label></div>
+    <input type="checkbox" id="pop-up"><!--チェックボックスにチェックついているようなものでチェック付けたら見える-->
+    <div class="overlay">
+	    <div class="window">
+		    <label class="close" for="pop-up">閉じる</label>
+		    <h4>確認</h4>
+		    <p>表に記録を追加しますか？</p>
+            <div class="button"><a href="/create" class="button2">追加する</a></div>
+	    </div>
+    </div>
+
+
+{% endblock %}

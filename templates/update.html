@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "layout.html" %}<!--すべてのページにcss-->
+{% block content %}
 <body>
     <form action="/update/{{todo.id}}" method="post">
-        <input type="text" name="assign" placeholder="担当者" value="{{todo.assign}}" required>
-        <input type="text" name="title" placeholder="Todoのタイトル"  value="{{todo.title}}" required>
-        <input type="text" name="memo" placeholder="メモ" value="{{todo.memo}}" required>
+        <input type="text" name="phrase" placeholder="題名" value="{{todo.phrase}}" required>
+        <input type="text" name="title" placeholder="原文"  value="{{todo.title}}" required>
+        <!--input type="text" name="summary" placeholder="要約文" value="{{todo.summary}}" required-->
         <input type="submit" value="更新">
     </form>
     <a href="{{url_for('index')}}">戻る</a>
 </body>
-</html>
+<div class="button">
+    <label class="open" for="pop-up">戻る</label></div>
+    <input type="checkbox" id="pop-up"><!--チェックボックスにチェックついているようなものでチェック付けたら見える-->
+    <div class="overlay">
+	    <div class="window">
+		    <label class="close" for="pop-up">閉じる</label>
+		    <h4>確認</h4>
+		    <p>保存したデータに戻りますか？</p>
+            <div class="button"><a href="{{url_for('index')}}" class="button2">戻る</a></div>
+	    </div>
+    </div>
+{% endblock %}

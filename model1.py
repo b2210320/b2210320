@@ -83,7 +83,7 @@ def summary(text):
     lst2 = [doc0,doc1,doc2]
     df = pd.DataFrame(list(zip(lst1,lst2)), columns = ['Class.','Content'])
     df = df.replace( '\n', '', regex=True)
-    return df.iloc[1,1]
+    return df.iloc[2,1]
     #print(df)
 
     #with pd.option_context('display.max_rows', None, 'display.max_columns', None, 'display.colheader_justify','light', 'display.width', 2000, 'display.max_colwidth', 500):
